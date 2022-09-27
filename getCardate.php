@@ -1,7 +1,8 @@
 <?php
 error_reporting(0);
+// require_once 'function.php';
 require_once 'db.php';
-
+FIX_PHP_CORSS_ORIGIN();
 try {
     $conn = CON_CARDATA();
     //code...

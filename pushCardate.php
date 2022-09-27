@@ -1,37 +1,36 @@
 <?php
-require_once('function.php');
+require_once 'db.php';
 FIX_PHP_CORSS_ORIGIN();
-
+// $_POST[''];
 $postData = file_get_contents("php://input");
-$obj = json_decode($postData, true);
-// print_r($obj) ;
-//echo $obj['name']
+$car = json_decode($postData, true);
+// print_r($car);
+//echo $car['name']
 
-$name = $obj['name'];
-$model = $obj['model'];
-$price = $obj['price'];
+echo $name = $car['name'];
+$model = $car['model'];
+$price = $car['price'];
+$vat = $car['vat'];
 
-
-
+// exit();
 if ($name != '') {
- 
+
     $conn = CON_CARDATA();
-    $sql = "INSERT INTO test.cars (name, model, price)
-            VALUES ('$name', '$model', '$price')";
+    $sql = "INSERT INTO tb_cars (name, model, price, vat)
+            VALUES ('$name', '$model', '$price', '$vat')";
+    $query = mysqi_query($conn, $sql);
+    if ($query) {
+        // if ($conn->query($sql) === true) {
+        // echo "New record created successfully";
+        echo json_encode("{'success',true}");
+    } else {
+        echo json_encode("{'success',false}");
+    }
+    // $result = $conn->query($sql);
 
-            if ($conn->query($sql) === TRUE) {
-                // echo "New record created successfully"; 
-                echo json_encode("{'success',true}");
-            } else {
-                echo json_encode("{'success',false}");
-            }
-    $result = $conn->query($sql);
+    // CloseCON_CARDATA($conn);
 
-    CloseCON_CARDATA($conn);
-
-}else{
-    echo "-b-";    
+} else {
+    echo json_encode("{'success',false}");
+    // echo "-b-";
 }
-
-
-?>
