@@ -6,8 +6,7 @@ $postData = file_get_contents("php://input");
 $car = json_decode($postData, true);
 // print_r($car);
 //echo $car['name']
-
-echo $name = $car['name'];
+$name = $car['name'];
 $model = $car['model'];
 $price = $car['price'];
 $vat = $car['vat'];
@@ -18,7 +17,7 @@ if ($name != '') {
     $conn = CON_CARDATA();
     $sql = "INSERT INTO tb_cars (name, model, price, vat)
             VALUES ('$name', '$model', '$price', '$vat')";
-    $query = mysqi_query($conn, $sql);
+    $query = mysqli_query($conn, $sql);
     if ($query) {
         // if ($conn->query($sql) === true) {
         // echo "New record created successfully";
