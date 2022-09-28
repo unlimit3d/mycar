@@ -1,4 +1,8 @@
 <?php
+date_default_timezone_set('Asia/Bangkok');
+
+const SECRET_KEY = 'CmyCar1234@!!!';
+
 function CON_CARDATA()
 {
     $dbhost = "127.0.0.1"; // localhost
