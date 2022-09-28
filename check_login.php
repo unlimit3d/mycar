@@ -3,6 +3,8 @@
 require 'db.php';
 require 'vendor/autoload.php';
 
+FIX_PHP_CORSS_ORIGIN();
+
 use \Firebase\JWT\JWT;
 
 $postData = file_get_contents("php://input");
@@ -31,5 +33,4 @@ if ($username == 'admin' && $password == '123456') {
     echo json_encode($token);
 } else {
     echo json_encode(array('error' => 'username หรือ password ไม่ถูกต้อง'));
-
 }
